@@ -302,7 +302,7 @@
 
 	.reset {
 		// border: 2px solid #333;
-		margin-top: 14rem;
+		margin-top: 4rem;
 		margin-inline: auto;
 		// width: 15rem;
 	}
