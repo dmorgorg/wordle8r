@@ -115,6 +115,7 @@
 											name={`${row}${col}`}
 											type="text"
 											maxlength="1"
+											disabled={row < currentRow}
 											onkeydown={(event) => handleKeyDown(event, grid, row, col, statuses)}
 											oninput={(event) => handleInput(event, grid, row, col)}
 											onclick={moveCursorToEnd(row, col)}
@@ -406,9 +407,6 @@
 				.none {
 					background-color: #aaa;
 				}
-				.reset {
-					margin-top: 4rem;
-				}
 			}
 			.right-column {
 				width: 100%;
@@ -429,9 +427,6 @@
 				padding: 0.5rem;
 				padding-block-start: 0.75rem;
 				padding-block-end: 1rem;
-				width: 100%;
-			}
-			.status {
 				width: 100%;
 			}
 		}
