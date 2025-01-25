@@ -89,7 +89,7 @@
 
 <div class="outer">
 	<div>
-		<a class="how-to-play mt-4" href="/misc/wordle8r/how-to-use"
+		<a class="how-to-play mt-4" href="/how-to-use"
 			><img src="/information-button.png" alt="information button" />How to use...</a
 		>
 	</div>
