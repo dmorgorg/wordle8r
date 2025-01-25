@@ -148,7 +148,7 @@
 		{/if}
 
 		{#if doesWordExist(grid, currentRow, words) && filteredPossibles.length === 0 && areAllRowStatusesSet(statuses, currentRow)}
-			<h4 class="wordDoesNotExist error center">No possible words</h4>
+			<h4 class="wordDoesNotExist error center ht-4">No possible words</h4>
 		{/if}
 
 		{#if (currentRow > 0 && areAllRowStatusesSet(statuses, currentRow - 1) && filteredPossibles.length > 0) || (doesWordExist(grid, currentRow, words) && filteredPossibles.length > 0)}
