@@ -160,7 +160,7 @@
 			</button>
 			<!-- showPossibles: {showPossibles} -->
 		{/if}
-		{#if showPossibles}
+		{#if showPossibles && filteredPossibles.length > 0}
 			<div class="scrollable-list">
 				{#each filteredPossibles as possible}
 					<div class:bold={select.has(possible)} class="fs-120">{possible}</div>
@@ -215,7 +215,7 @@
 		align-items: center;
 		display: flex;
 		justify-content: center;
-		margin-block: 0.25rem;
+		margin-block: 0;
 	}
 
 	.cell {
