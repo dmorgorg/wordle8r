@@ -96,7 +96,7 @@
 	<div class="container pt-4">
 		{#each Array.from(Array(6).keys()) as row (row)}
 			{#if row <= currentRow}
-				<div class="row mt-4">
+				<div class="row">
 					{#each Array.from(Array(5).keys()) as col (col)}
 						<div class="cell">
 							<div
