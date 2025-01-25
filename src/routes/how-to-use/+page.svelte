@@ -52,7 +52,7 @@
 		gap: 1rem;
 		margin-inline: auto;
 		overflow-y: auto;
-		padding-block-end: 14rem;
+		padding-inline: 1rem;
 	}
 	a {
 		display: flex;
