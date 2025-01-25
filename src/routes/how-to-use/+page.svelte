@@ -9,7 +9,7 @@
 	<p>
 		Start Wordle as you normally would. Make your first guess. Then, when you get feedback, enter
 		the same guess into Wordle8r and the feedback (colours) that you received from Wordle. Wordle8r
-		will then generate a list of possible words that could be the solution word. You can then use
+		will then generate a list of possible words that could be your solution word. You can then use
 		this list to help you make your next guess. Should you need help... Repeat as necessary. Easy
 		peasy.
 	</p>
@@ -30,8 +30,9 @@
 		It won't use these obscure words for a solution, though. The second list, of around 2,300
 		'common' words, are used to choose the word of the day, in random order. Or that was how the
 		original version of Josh Wardle's game was designed; now that it is owned by the New York Times,
-		the original solution set has changed a little. For example, the word "squid" was the solution
-		recently despite never being one of the 2,300 or so solutions.
+		the original solution set has changed a little. For example, the word "squid" was the NYT
+		solution recently despite never being one of the 2,300 or so of Josh Wardle's original
+		solutions.
 	</p>
 	<p>
 		When you look at the list of possible words for the current state of your guesses, you may
