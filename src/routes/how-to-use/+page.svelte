@@ -40,7 +40,7 @@
 		most part, it still represents the set of possible solutions. "squid" and an unknown number of
 		other words notwithstanding.
 	</p>
-	<p><a href="/misc/w8r/"><strong>Let's Play</strong> </a></p>
+	<p><a href="/"><strong>Let's Play</strong> </a></p>
 </div>
 
 <style>
