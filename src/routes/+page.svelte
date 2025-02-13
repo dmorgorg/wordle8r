@@ -183,7 +183,7 @@
 		align-items: center;
 		display: flex;
 		flex-direction: column;
-		font-size: clamp(0.875rem, 1.25vw, 1.5rem);
+		font-size: clamp(0.875rem, 1.125vw, 1.5rem);
 	}
 
 	a.how-to-play {
@@ -204,7 +204,7 @@
 	}
 
 	.container {
-		width: 15rem;
+		width: 20rem;
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
