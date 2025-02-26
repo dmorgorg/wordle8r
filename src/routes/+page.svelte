@@ -185,7 +185,7 @@
 			<h4 class="wordDoesNotExist error center ht-4">No possible words</h4>
 		{/if}
 
-		{currentRow}
+		<!-- {currentRow} -->
 
 		{#if (areAllRowStatusesSet(statuses, currentRow) && filteredPossibles.length > 0) || (currentRow > 0 && areAllRowStatusesSet(statuses, currentRow - 1) && filteredPossibles.length > 0)}
 			<div class="center fs-120">
