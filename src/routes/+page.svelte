@@ -97,11 +97,14 @@
 
 	function setStatus(row, col, status) {
 		statuses[row][col] = status;
-
+		console.log('in setStatus');
 		if (areAllRowStatusesSet(statuses, row)) {
+			console.log('all statuses set');
 			const g = getGuess(grid, currentRow);
 			const s = getStatusString(statuses, currentRow);
 			getPossibles(g, s);
+			showPossibles = false;
+			console.log('showPossibles: ', showPossibles);
 		}
 	}
 
