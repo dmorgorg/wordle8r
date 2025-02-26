@@ -5,7 +5,6 @@
 	import { onMount } from 'svelte';
 
 	import {
-		handleKeyDown,
 		handleInput,
 		isRowComplete,
 		isRowEmpty,
@@ -22,9 +21,39 @@
 	let currentRow = $state(0);
 	let grid = $state(Array.from({ length: 6 }, () => Array(5).fill('')));
 	let statuses = $state(Array.from({ length: 6 }, () => Array(5).fill('')));
-	let possibles = { 0: Array.from(words), 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
+	let possibles = $state({ 0: Array.from(words), 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] });
 	let filteredPossibles = $state([]);
 	let showPossibles = $state(false);
+
+	// restrict inputs to only allow letters and backspace
+	function handleKeyDown(event, grid, row, col, statuses) {
+		const key = event.key;
+
+		if (!/^[a-zA-Z]$/.test(key) && key !== 'Backspace') {
+			event.preventDefault();
+		}
+
+		if (key === 'Backspace') {
+			if (grid[row][col] === '') {
+				// Move focus to the previous input if backspace is pressed and the current input is empty
+				if (col > 0) {
+					let prevInput = document.querySelector(`input[name="${row}${col - 1}"]`);
+					prevInput.focus();
+				} else if (!isRowEmpty(grid, row)) {
+					for (let i = 4; i >= 0; i--) {
+						if (grid[row][i] !== '') {
+							let prevInput = document.querySelector(`input[name="${row}${i}"]`);
+							prevInput.focus();
+							break;
+						}
+					}
+				}
+			}
+			// when backspacing, clear all the status entries for the row
+			statuses[row].fill('');
+			// showPossibles = false;
+		}
+	}
 
 	onMount(() => {
 		setFocus(0, 0);
@@ -37,6 +66,8 @@
 	// has to be in this file for the tick to work?
 	function advanceRow() {
 		currentRow++;
+		console.log(currentRow);
+		showPossibles = false;
 		tick().then(() => {
 			setFocus(currentRow, 0);
 		});
@@ -110,7 +141,7 @@
 									id={`${row}${col}`}
 									name={`${row}${col}`}
 									type="text"
-									disabled={row < currentRow}
+									disabled={row < currentRow || areAllRowStatusesSet(statuses, row)}
 									maxlength="1"
 									onkeydown={(event) => handleKeyDown(event, grid, row, col, statuses)}
 									oninput={(event) => handleInput(event, grid, row, col)}
@@ -143,29 +174,33 @@
 			{/if}
 		{/each}
 
+		<!-- show warning if row is complete and the word does not exist -->
 		{#if isRowComplete(grid, currentRow) && !doesWordExist(grid, currentRow, words)}
 			<h4 class="wordDoesNotExist error center">Not a valid word!</h4>
 		{/if}
 
+		<!-- if the word does exist, all statuses are set, and there are no possible words, 
+		 show a warning -->
 		{#if doesWordExist(grid, currentRow, words) && filteredPossibles.length === 0 && areAllRowStatusesSet(statuses, currentRow)}
 			<h4 class="wordDoesNotExist error center ht-4">No possible words</h4>
 		{/if}
 
-		{#if (currentRow > 0 && areAllRowStatusesSet(statuses, currentRow - 1) && filteredPossibles.length > 0) || (doesWordExist(grid, currentRow, words) && filteredPossibles.length > 0)}
+		{currentRow}
+
+		{#if (areAllRowStatusesSet(statuses, currentRow) && filteredPossibles.length > 0) || (currentRow > 0 && areAllRowStatusesSet(statuses, currentRow - 1) && filteredPossibles.length > 0)}
 			<div class="center fs-120">
 				{filteredPossibles.length} possible {filteredPossibles.length > 1 ? 'words' : 'word'}
 			</div>
 			<button class="wide" onclick={() => (showPossibles = !showPossibles)}>
 				{showPossibles ? 'Hide' : 'Show'}...
 			</button>
-			<!-- showPossibles: {showPossibles} -->
-		{/if}
-		{#if showPossibles && filteredPossibles.length > 0}
-			<div class="scrollable-list">
-				{#each filteredPossibles as possible}
-					<div class:bold={select.has(possible)} class="fs-120">{possible}</div>
-				{/each}
-			</div>
+			{#if showPossibles && filteredPossibles.length > 0}
+				<div class="scrollable-list">
+					{#each filteredPossibles as possible}
+						<div class:bold={select.has(possible)} class="fs-120">{possible}</div>
+					{/each}
+				</div>
+			{/if}
 		{/if}
 
 		{#if currentRow < 5 && areAllRowStatusesSet(statuses, currentRow) && filteredPossibles.length > 1}

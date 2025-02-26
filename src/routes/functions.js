@@ -6,40 +6,11 @@ export function moveCursorToEnd(row, col) {
 		input.selectionStart = input.selectionEnd = input.value.length;
 	};
 }
-// restrict inputs to only allow letters and backspace
-export function handleKeyDown(event, grid, row, col, statuses) {
-	const key = event.key;
-
-	if (!/^[a-zA-Z]$/.test(key) && key !== 'Backspace') {
-		event.preventDefault();
-	}
-
-	if (key === 'Backspace') {
-		if (grid[row][col] === '') {
-			// Move focus to the previous input if backspace is pressed and the current input is empty
-			if (col > 0) {
-				let prevInput = document.querySelector(`input[name="${row}${col - 1}"]`);
-				prevInput.focus();
-			} else if (!isRowEmpty(grid, row)) {
-				for (let i = 4; i >= 0; i--) {
-					if (grid[row][i] !== '') {
-						let prevInput = document.querySelector(`input[name="${row}${i}"]`);
-						prevInput.focus();
-						break;
-					}
-				}
-			}
-		}
-		// when backspacing, clear all the status entries for the row
-		statuses[row].fill('');
-		// console.log(statuses[row]);
-	}
-}
 
 export function handleInput(event, grid, row, col) {
 	const value = event.target.value.toLowerCase();
 	grid[row][col] = value;
-	event.target.value = event.target.value.toLowerCase();
+	event.target.value = value;
 
 	// automatically move to the next input when the current input is filled
 	for (let i = 0; i < 5; i++) {
@@ -140,25 +111,4 @@ export function colorise(guess, target) {
 
 export function setPossibles(possibles, row, guess, status) {
 	possibles[row].push({ guess, status });
-}
-
-// export function advanceRow(currentRow) {
-// 	currentRow++;
-// 	tick().then(() => {
-// 		const firstCol = document.querySelector(`input[name="${currentRow}0"]`);
-// 		if (firstCol) {
-// 			firstCol.focus();
-// 		}
-// 	});
-// }
-
-export function advanceRow(currentRow) {
-	currentRow++;
-	tick().then(() => {
-		const firstCol = document.querySelector(`input[name="${currentRow}0"]`);
-		if (firstCol) {
-			firstCol.focus();
-		}
-	});
-	return currentRow;
 }
