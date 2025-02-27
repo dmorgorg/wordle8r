@@ -99,7 +99,7 @@
 			const g = getGuess(grid, currentRow);
 			const s = getStatusString(statuses, currentRow);
 			getPossibles(g, s);
-			if (filteredPossibles.length === 1) {
+			if (filteredPossibles.length === 1 && s === 'xxxxx') {
 				return;
 			}
 			if (row < 5) {
@@ -206,10 +206,6 @@
 				</div>
 			{/if}
 		{/if}
-
-		<!-- {#if currentRow < 5 && areAllRowStatusesSet(statuses, currentRow) && filteredPossibles.length > 1}
-			<button class="wide" onclick={advanceRow}> Next Guess... </button>
-		{/if} -->
 
 		{#if areAllRowStatusesSet(statuses, currentRow) || currentRow > 0}
 			<button class="wide" onclick={reset}>Reset...</button>
