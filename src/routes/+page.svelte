@@ -66,8 +66,6 @@
 	// has to be in this file for the tick to work?
 	function advanceRow() {
 		currentRow++;
-		console.log(currentRow);
-		showPossibles = false;
 		tick().then(() => {
 			setFocus(currentRow, 0);
 		});
@@ -97,14 +95,17 @@
 
 	function setStatus(row, col, status) {
 		statuses[row][col] = status;
-		console.log('in setStatus');
 		if (areAllRowStatusesSet(statuses, row)) {
-			console.log('all statuses set');
 			const g = getGuess(grid, currentRow);
 			const s = getStatusString(statuses, currentRow);
 			getPossibles(g, s);
+			if (filteredPossibles.length === 1) {
+				return;
+			}
+			if (row < 5) {
+				advanceRow(row);
+			}
 			showPossibles = false;
-			console.log('showPossibles: ', showPossibles);
 		}
 	}
 
@@ -206,11 +207,11 @@
 			{/if}
 		{/if}
 
-		{#if currentRow < 5 && areAllRowStatusesSet(statuses, currentRow) && filteredPossibles.length > 1}
+		<!-- {#if currentRow < 5 && areAllRowStatusesSet(statuses, currentRow) && filteredPossibles.length > 1}
 			<button class="wide" onclick={advanceRow}> Next Guess... </button>
-		{/if}
+		{/if} -->
 
-		{#if currentRow > 0 || filteredPossibles.length === 1}
+		{#if areAllRowStatusesSet(statuses, currentRow) || currentRow > 0}
 			<button class="wide" onclick={reset}>Reset...</button>
 		{/if}
 	</div>
@@ -331,7 +332,7 @@
 		box-shadow: none;
 		padding: 0.25rem;
 		width: 100%;
-		background-color: #ccc;
+		background-color: #d8d8d8;
 	}
 
 	.error {
