@@ -186,17 +186,17 @@
 
 		<!-- show warning if row is complete and the word does not exist -->
 		{#if isRowComplete(grid, currentRow) && !doesWordExist(grid, currentRow, words)}
-			<h4 class="wordDoesNotExist error center">Not a valid word!</h4>
+			<h4 class="wiggleMe error center">Not a valid word!</h4>
 		{/if}
 
 		<!-- if the word does exist, all statuses are set, and there are no possible words, 
 		 show a warning -->
 		{#if doesWordExist(grid, currentRow, words) && possibles[currentRow].length === 0 && areAllRowStatusesSet(statuses, currentRow)}
-			<h4 class="wordDoesNotExist error center ht-4">No possible words</h4>
+			<h4 class="wiggleMe error center ht-4">No possible words</h4>
 		{/if}
 
 		{#if fatal}
-			<h4 class="wordDoesNotExist error center ht-4">
+			<h4 class="wiggleMe error center ht-4">
 				Inconsistent input! <br />Reset to start over?
 			</h4>
 		{/if}
@@ -347,9 +347,12 @@
 	}
 
 	.error {
-		color: red;
+		background-color: #a00;
+		color: black;
+		color: white;
 		font-size: 1.25rem;
 		font-weight: 500;
+		padding-block: 0.75rem;
 	}
 
 	.scrollable-list {
@@ -364,13 +367,8 @@
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
-		.wordDoesNotExist {
+		.wiggleMe {
 			animation: wiggle 0.5s;
-		}
-		.wordDoesNotExistDelay {
-			animation: wiggleDelay 0.5s;
-			// background: yellow;
-			transition-delay: 1s;
 		}
 	}
 
