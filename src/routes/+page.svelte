@@ -24,6 +24,7 @@
 	let possibles = $state({ 0: Array.from(words), 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] });
 	let filteredPossibles = $state([]);
 	let showPossibles = $state(false);
+	let fatal = $state(currentRow > 0 && filteredPossibles.length === 0);
 
 	// restrict inputs to only allow letters and backspace
 	function handleKeyDown(event, grid, row, col, statuses) {
@@ -100,6 +101,10 @@
 			const s = getStatusString(statuses, currentRow);
 			getPossibles(g, s);
 			if (filteredPossibles.length === 1 && s === 'xxxxx') {
+				return;
+			}
+			if (currentRow > 0 && filteredPossibles.length === 0) {
+				fatal = true;
 				return;
 			}
 			if (row < 5) {
@@ -185,26 +190,34 @@
 
 		<!-- if the word does exist, all statuses are set, and there are no possible words, 
 		 show a warning -->
-		{#if doesWordExist(grid, currentRow, words) && filteredPossibles.length === 0 && areAllRowStatusesSet(statuses, currentRow)}
+		{#if doesWordExist(grid, currentRow, words) && possibles[currentRow].length === 0 && areAllRowStatusesSet(statuses, currentRow)}
 			<h4 class="wordDoesNotExist error center ht-4">No possible words</h4>
 		{/if}
 
-		<!-- {currentRow} -->
+		{#if fatal}
+			<h4 class="wordDoesNotExist error center ht-4">
+				Inconsistent input! <br />Reset to start over?
+			</h4>
+		{/if}
 
-		{#if (areAllRowStatusesSet(statuses, currentRow) && filteredPossibles.length > 0) || (currentRow > 0 && areAllRowStatusesSet(statuses, currentRow - 1) && filteredPossibles.length > 0)}
-			<div class="center fs-120">
-				{filteredPossibles.length} possible {filteredPossibles.length > 1 ? 'words' : 'word'}
-			</div>
-			<button class="wide" onclick={() => (showPossibles = !showPossibles)}>
-				{showPossibles ? 'Hide' : 'Show'}...
-			</button>
-			{#if showPossibles && filteredPossibles.length > 0}
-				<div class="scrollable-list">
-					{#each filteredPossibles as possible}
-						<div class:bold={select.has(possible)} class="fs-120">{possible}</div>
-					{/each}
+		{#if filteredPossibles.length > 0}
+			{#if areAllRowStatusesSet(statuses, currentRow) || (currentRow > 0 && areAllRowStatusesSet(statuses, currentRow - 1))}
+				<div class="center fs-120">
+					{filteredPossibles.length} possible {filteredPossibles.length > 1 ? 'words' : 'word'}
 				</div>
+				<button class="wide" onclick={() => (showPossibles = !showPossibles)}>
+					{showPossibles ? 'Hide' : 'Show'}...
+				</button>
+				{#if showPossibles && filteredPossibles.length > 0}
+					<div class="scrollable-list">
+						{#each filteredPossibles as possible}
+							<div class:bold={select.has(possible)} class="fs-120">{possible}</div>
+						{/each}
+					</div>
+				{/if}
 			{/if}
+			<!-- {:else if currentRow > 0 && filteredPossibles.length === 0}
+			screwed -->
 		{/if}
 
 		{#if areAllRowStatusesSet(statuses, currentRow) || currentRow > 0}
@@ -312,6 +325,7 @@
 	.center {
 		display: flex;
 		justify-content: center;
+		text-align: center;
 	}
 
 	button.status {

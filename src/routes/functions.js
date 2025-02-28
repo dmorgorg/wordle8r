@@ -33,7 +33,8 @@ export function isRowComplete(grid, row) {
 
 export function doesWordExist(grid, row, words) {
 	const word = grid[row].join('');
-	return words.has(word);
+	const exists = words.has(word);
+	return exists;
 }
 
 export function areAllRowStatusesSet(statuses, row) {
@@ -49,8 +50,7 @@ export function getStatusString(statuses, row) {
 }
 
 export function getGuess(grid, row) {
-	let guess = grid[row].join('');
-	return guess;
+	return grid[row].join('');
 }
 
 export function colorise(guess, target) {
