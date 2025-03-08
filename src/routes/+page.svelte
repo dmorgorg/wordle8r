@@ -25,6 +25,7 @@
 	let filteredPossibles = $state([]);
 	let showPossibles = $state(false);
 	let fatal = $state(currentRow > 0 && filteredPossibles.length === 0);
+	let disabled = $state(false);
 
 	// restrict inputs to only allow letters and backspace
 	function handleKeyDown(event, grid, row, col, statuses) {
@@ -66,6 +67,7 @@
 
 	// has to be in this file for the tick to work?
 	function advanceRow() {
+		disabled = false;
 		currentRow++;
 		tick().then(() => {
 			setFocus(currentRow, 0);
@@ -90,12 +92,13 @@
 		}
 		const firstInput = document.querySelector(`input[name="00"]`);
 		if (firstInput) {
-			firstInput.disabled = false;
+			// firstInput.disabled = false;
 			setFocus(0, 0);
 		}
 	}
 
 	function setStatus(row, col, status) {
+		disabled = true;
 		statuses[row][col] = status;
 		if (areAllRowStatusesSet(statuses, row)) {
 			const g = getGuess(grid, currentRow);
@@ -151,7 +154,7 @@
 									id={`${row}${col}`}
 									name={`${row}${col}`}
 									type="text"
-									disabled={row < currentRow || areAllRowStatusesSet(statuses, row)}
+									disabled={row < currentRow || disabled}
 									maxlength="1"
 									onkeydown={(event) => handleKeyDown(event, grid, row, col, statuses)}
 									oninput={(event) => handleInput(event, grid, row, col)}
@@ -181,6 +184,7 @@
 						</div>
 					{/each}
 				</div>
+				<!-- row: {row}, currentRow: {currentRow}, disabled: {disabled} -->
 			{/if}
 		{/each}
 
@@ -339,7 +343,6 @@
 		border: 0.125rem solid black;
 		font-size: 110%;
 		font-weight: 500;
-		// outline: none;
 		box-shadow: none;
 		padding: 0.25rem;
 		width: 100%;
