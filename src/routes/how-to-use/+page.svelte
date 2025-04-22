@@ -4,7 +4,7 @@
 			>Wordle</strong
 		>. (If not, just DuckDuckGo the term "Wordle" and prepare for a life-changing experience). So
 		I'm going to assume that you're familiar with the game, and that you're here to learn how to use
-		this <strong>Wordle8r</strong> tool.
+		this <strong>Wordle8r</strong> tool/toy.
 	</p>
 	<p>
 		Start Wordle as you normally would. Make your first guess. Then, when you get feedback, enter
