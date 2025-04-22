@@ -28,18 +28,18 @@
 		a guess.
 	</p>
 	<p>
-		It won't use these obscure words for a solution, though. The second list, of around 2,300
-		'common' words, are used to choose the word of the day, in random order. Or that was how the
-		original version of Josh Wardle's game was designed; now that it is owned by the New York Times,
-		the original solution set has changed a little. For example, the word "squid" was the NYT
+		Wordle won't use these obscure words for a puzzle answer, though. The second list, of around
+		2,300 'common' words, are used to choose the word of the day, in random order. Or that was how
+		the original version of Josh Wardle's game was designed; now that it is owned by the New York
+		Times, the original solution set has changed a little. For example, the word "squid" was the NYT
 		solution recently despite never being one of the 2,300 or so of Josh Wardle's original
 		solutions.
 	</p>
 	<p>
 		When you look at the list of possible words for the current state of your guesses, you may
-		notice some in bold font. These represent the words originally in the solutions list. For the
-		most part, it still represents the set of possible solutions. "squid" and an unknown number of
-		other words notwithstanding.
+		notice some in bold font. These represent the words originally in the answers list. For the most
+		part, it still represents the set of possible solutions. "squid" and an unknown number of other
+		words notwithstanding.
 	</p>
 	<p><a href="/"><strong>Let's Play</strong> </a></p>
 </div>
