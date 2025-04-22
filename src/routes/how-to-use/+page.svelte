@@ -28,8 +28,8 @@
 		a guess.
 	</p>
 	<p>
-		Wordle won't use these obscure words for a puzzle answer, though. The second list &nspace; of
-		around 2,300 'common' words &nspace; are used to choose the word of the day, in random order. Or
+		Wordle won't use these obscure words for a puzzle answer, though. The second list &ensp; of
+		around 2,300 'common' words &ensp; are used to choose the word of the day, in random order. Or
 		that was how the original version of Josh Wardle's game was designed; now that it is owned by
 		the New York Times, the original solution set has changed a little. For example, the word
 		"squid" was the NYT solution recently despite never being one of the 2,300 or so of Josh
