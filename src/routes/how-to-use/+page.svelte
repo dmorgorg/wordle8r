@@ -17,9 +17,9 @@
 	<p>
 		Of course, this may be considered cheating by some! And, yes, it is a good mental and vocabulary
 		exercise to solve the puzzle without any help. But, if you're stuck, or if you're just curious,
-		this tool is here to help. (I haven't used it myself this way&mdash;although I was seriously
-		tempted when a streak of 89 was on the line&mdash;it was more of a fun programming exercise. But
-		I do use it after the fact to see what I missed.)
+		this tool is here to help. (I haven't used it myself this way&mdash;although I was very
+		seriously tempted recently when a streak of 89 was on the line&mdash;it was more of a fun
+		programming exercise. But I do use it after the fact to see what I missed.)
 	</p>
 	<p>
 		Wordle uses two word lists. The first is a list of all five letter words, as determined (I
@@ -29,8 +29,8 @@
 	</p>
 	<p>
 		Wordle won't use these obscure words for a puzzle answer, though. The second list&mdash;of
-		around 2,300 'common' words&mdash;are used to choose the word of the day, in random order. Or
-		that was how the original version of Josh Wardle's game was designed; now that it is owned by
+		around 2,300 more 'common' words&mdash;are used to choose the word of the day, in random order.
+		Or that was how the original version of Josh Wardle's game was designed; now that it is owned by
 		the New York Times, the original solution set has changed a little. For example, the word
 		"squid" was the NYT solution recently despite never being one of the 2,300 or so of Josh
 		Wardle's original solutions.
@@ -38,7 +38,7 @@
 	<p>
 		When you look at the list of possible words for the current state of your guesses, you may
 		notice some in bold font. These represent the words originally in the answers list. For the most
-		part, it still represents the set of possible solutions. "squid" and an unknown number of other
+		part, it still represents the set of possible answers. "squid" and an unknown number of other
 		words notwithstanding.
 	</p>
 	<p><a href="/"><strong>Let's Play</strong> </a></p>
